@@ -73,8 +73,20 @@ class MasterViewController: UITableViewController {
             cell.textLabel?.text = movieInfo["title"]
             cell.detailTextLabel?.text = movieInfo["genre"]
             cell.imageView?.image = UIImage(named: "loading")
+            print("\(movieInfo)")
             
             
+            
+            let thumbnailUpdateOperation = NSBlockOperation(block: {
+            
+                let posterCode = movieInfo["posterCode"]
+                let posterURL = NSURL(string: "http://125.209.197.227/cinemakid/stillcut/load/" + posterCode!)
+                let posterData = NSData(contentsOfURL: posterURL!)
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    cell.imageView?.image = UIImage(data: posterData!)
+                })
+            })
+            thumbnailQueue.addOperation(thumbnailUpdateOperation)
         }
         return cell
     }
