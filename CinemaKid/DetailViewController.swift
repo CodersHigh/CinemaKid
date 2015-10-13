@@ -10,25 +10,39 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
-    var detailItem: AnyObject? {
+    let imageQueue:NSOperationQueue = NSOperationQueue()
+    
+    var detailItem: [String:String]? {
         willSet {
             
         }
         didSet {
             // Update the view.
-            self.configureView()
+            if let _ = self.view {
+                self.configureView()
+            }
         }
     }
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+        if let movieDetail = self.detailItem {
+            titleLabel.text = movieDetail["title"]
+            detailDescriptionLabel.text = movieDetail["description"]
+            let imageUpdateOperation = NSBlockOperation(block: {
+                let posterCode = movieDetail["posterCode"]
+                let posterURL = NSURL(string: "http://125.209.197.227/cinemakid/stillcut/load/" + posterCode!)
+                let posterData = NSData(contentsOfURL: posterURL!)
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.posterImageView.image = UIImage(data: posterData!)
+                })
+            
+            })
+            imageQueue.addOperation(imageUpdateOperation)
         }
     }
 

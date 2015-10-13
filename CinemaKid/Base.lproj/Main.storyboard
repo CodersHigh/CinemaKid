@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -32,11 +34,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9g-G0-WjV">
+                                <rect key="frame" x="20" y="72" width="560" height="34"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="dpM-Rm-Pxc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LTE-W8-xj9">
+                                <rect key="frame" x="20" y="114" width="560" height="300"/>
+                                <animations/>
+                            </imageView>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
+                                <rect key="frame" x="20" y="422" width="560" height="158"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -44,15 +60,25 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="LTE-W8-xj9" secondAttribute="leading" id="0kw-KR-aal"/>
+                            <constraint firstItem="LTE-W8-xj9" firstAttribute="height" secondItem="svH-Pt-448" secondAttribute="height" multiplier="0.5" id="PwO-zN-2wB"/>
+                            <constraint firstItem="LTE-W8-xj9" firstAttribute="top" secondItem="O9g-G0-WjV" secondAttribute="bottom" constant="8" id="Qoq-Gi-eTk"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="LTE-W8-xj9" secondAttribute="bottom" constant="8" id="YZA-Z9-FWV"/>
+                            <constraint firstItem="O9g-G0-WjV" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="ZkY-AN-QrI"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="O9g-G0-WjV" secondAttribute="leading" id="ZoD-kf-2Ww"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O9g-G0-WjV" secondAttribute="trailing" id="fAU-jH-pIa"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="20" id="jRk-IT-HQU"/>
+                            <constraint firstItem="LTE-W8-xj9" firstAttribute="leading" secondItem="O9g-G0-WjV" secondAttribute="leading" id="oJt-aA-W6F"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="trailing" secondItem="LTE-W8-xj9" secondAttribute="trailing" id="ySu-IF-lia"/>
+                            <constraint firstItem="LTE-W8-xj9" firstAttribute="trailing" secondItem="O9g-G0-WjV" secondAttribute="trailing" id="zN8-Br-9Ah"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="posterImageView" destination="LTE-W8-xj9" id="Cpj-xq-9Dy"/>
+                        <outlet property="titleLabel" destination="O9g-G0-WjV" id="GRx-iG-P2V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
